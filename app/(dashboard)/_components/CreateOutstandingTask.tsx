@@ -152,7 +152,7 @@ function CreateOutstandingTask({ trigger, type }: Props) {
             />
             <FormField
               control={form.control}
-              name="Description"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>

@@ -4,7 +4,8 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 export async function GET(request: Request) {
-  const user = await currentUser();
+  try {
+    const user = await currentUser();
   if (!user) {
     redirect("/sign-in");
   }
@@ -33,4 +34,9 @@ export async function GET(request: Request) {
   });
 
   return Response.json(categories);
+
+  } catch (e: any) {
+    console.error(e);
+    return new Response(e.message, { status: 500 });
+  }
 }
