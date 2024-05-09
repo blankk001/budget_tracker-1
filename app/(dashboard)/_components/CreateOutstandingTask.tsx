@@ -130,7 +130,7 @@ function CreateOutstandingTask({ trigger, type }: Props) {
             >
               Outstanding Task
             </span>
-            transaction
+            
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
