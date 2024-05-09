@@ -1,13 +1,12 @@
 import { z } from "zod";
 
-export const CreateTransactionSchema = z.object({
-  urgency: z.string().optional(),
-  title: z.string(),
+export const CreateProductSchema = z.object({
+  name: z.string(),
   description: z.string().optional(),
   date: z.coerce.date(),
-  type: z.union([z.literal("income"), z.literal("expense")]),
+  userId: z.string(),
 });
 
-export type CreateTransactionSchemaType = z.infer<
-  typeof CreateTransactionSchema
+export type CreateProductSchema = z.infer<
+  typeof CreateProductSchema
 >;
