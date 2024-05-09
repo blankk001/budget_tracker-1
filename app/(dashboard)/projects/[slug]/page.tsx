@@ -1,10 +1,34 @@
 import { CurrencyComboBox } from "@/components/CurrencyComboBox";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import CreateProjectNote from "../../_components/CreateProjectNote";
+import CreateOutstandingTask from "../../_components/CreateOutstandingTask";
 import { Button } from "@/components/ui/button";
+import prisma from "@/lib/prisma";
+import Link from "next/link";
 
 
-export default function page({ params }: { params: { slug: string } }) {
+
+export default async function page({ params }: { params: { slug: string } }) {
+
+    if (!params.slug) {
+        return null;
+    }
+
+    const project = await prisma.project.findFirst({
+        where: {
+            name: params.slug
+        }
+    })
+    if (!project) {
+        return (
+            <div className="container flex items-center justify-center flex-col">
+                <p className="text-2xl font-bold text-white">Project not found</p>
+                <Link href="/projects">
+                  <Button >Back To Projects</Button>
+                </Link>
+            </div>
+        )
+    }
     return (
         <>
         <div className="border-b bg-card">
@@ -28,7 +52,7 @@ export default function page({ params }: { params: { slug: string } }) {
               }
               type="projectNote"
             />
-            <CreateProjectNote
+            <CreateOutstandingTask
               trigger={
                 <Button
                   variant={"outline"}

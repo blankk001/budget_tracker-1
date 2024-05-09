@@ -63,3 +63,15 @@ model YearHistory {
 
   @@id([month, year, userId])
 }
+
+model Project {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @default(now())
+
+  name        String?
+  description String?
+  userId      String?
+  color       String?
+  icon        String?
+}

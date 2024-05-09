@@ -45,12 +45,23 @@ import { CreateTransaction } from "@/app/(dashboard)/_actions/transactions";
 import { toast } from "sonner";
 import { DateToUTCDate } from "@/lib/helpers";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea";
+
 interface Props {
   trigger: ReactNode;
   type: TransactionType;
 }
 
-function CreateProjectNote({ trigger, type }: Props) {
+function CreateOutstandingTask({ trigger, type }: Props) {
   const form = useForm<CreateTransactionSchemaType>({
     resolver: zodResolver(CreateTransactionSchema),
     defaultValues: {
@@ -94,7 +105,7 @@ function CreateProjectNote({ trigger, type }: Props) {
 
   const onSubmit = useCallback(
     (values: CreateTransactionSchemaType) => {
-      toast.loading("Creating transaction...", { id: "create-transaction" });
+      toast.loading("Creating Outstanding Task...", { id: "create-transaction" });
 
       mutate({
         ...values,
@@ -117,7 +128,7 @@ function CreateProjectNote({ trigger, type }: Props) {
                 type === "income" ? "text-emerald-500" : "text-red-500"
               )}
             >
-              {type}
+              Outstanding Task
             </span>
             transaction
           </DialogTitle>
@@ -134,19 +145,19 @@ function CreateProjectNote({ trigger, type }: Props) {
                     <Input defaultValue={""} {...field} />
                   </FormControl>
                   <FormDescription>
-                    Transaction description (optional)
+                    Outstanding Task Description
                   </FormDescription>
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="amount"
+              name="Description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Amount</FormLabel>
+                  <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input defaultValue={0} type="number" {...field} />
+                    <Textarea defaultValue={""} {...field} />
                   </FormControl>
                   <FormDescription>
                     Transaction amount (required)
@@ -156,22 +167,35 @@ function CreateProjectNote({ trigger, type }: Props) {
             />
 
             <div className="flex items-center justify-between gap-2">
+            
+              
+
               <FormField
                 control={form.control}
-                name="category"
+                name="urgency"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Category</FormLabel>
-                    <FormControl>
-                      <CategoryPicker
-                        type={type}
-                        onChange={handleCategoryChange}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Select a category for this transaction
-                    </FormDescription>
-                  </FormItem>
+                  <FormItem>
+                  <FormLabel>Urgency</FormLabel>
+                  <FormControl>
+                  <Select>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select Urgency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        
+                        <SelectItem value="low">Low</SelectItem>
+                        <SelectItem value="medium">Medium</SelectItem>
+                        <SelectItem value="high">High</SelectItem>
+                        
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  </FormControl>
+                  <FormDescription>
+                    Task Urgency
+                  </FormDescription>
+                </FormItem>
                 )}
               />
 
@@ -180,7 +204,7 @@ function CreateProjectNote({ trigger, type }: Props) {
                 name="date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Transaction date</FormLabel>
+                    <FormLabel>Date</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
@@ -242,4 +266,4 @@ function CreateProjectNote({ trigger, type }: Props) {
   );
 }
 
-export default CreateProjectNote;
+export default CreateOutstandingTask;

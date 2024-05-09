@@ -46,6 +46,7 @@ import { toast } from "sonner";
 import { DateToUTCDate } from "@/lib/helpers";
 import { Textarea } from "@/components/ui/textarea";
 
+
 interface Props {
   trigger: ReactNode;
   type: TransactionType;
@@ -155,52 +156,7 @@ function CreateProjectNote({ trigger, type }: Props) {
                 </FormItem>
               )}
             />
-            <div className="flex items-center justify-between gap-2">
-              
-
-              <FormField
-                control={form.control}
-                name="urgency"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Date</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-[200px] pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0">
-                        <Calendar
-                          mode="single"
-                          selected={field.value}
-                          onSelect={(value) => {
-                            if (!value) return;
-                            field.onChange(value);
-                          }}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormDescription>Select a date for this</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            
             <div className="flex items-center justify-between gap-2">
               
 
