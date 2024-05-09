@@ -101,7 +101,10 @@ function NavbarItem({
   clickCallback?: () => void;
 }) {
   const pathname = usePathname();
-  const isActive = pathname === link;
+
+  // Determine if the current pathname starts with the link (ensuring proper segment matching)
+  const isActive = pathname.startsWith(link) && 
+                   (pathname[link.length] === '/' || pathname[link.length] === undefined);
 
   return (
     <div className="relative flex items-center">
