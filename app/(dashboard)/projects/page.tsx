@@ -1,6 +1,6 @@
 
 
-import TransactionTable from "@/app/(dashboard)/transactions/_components/TransactionTable";
+import ProjectsTable from "@/app/(dashboard)/transactions/_components/TransactionTable";
 import { differenceInDays, startOfMonth } from "date-fns";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -37,7 +37,7 @@ function TransactionsPage() {
       
       <div className="container mt-2">
       
-        <TransactionTable from={dateRange.from} to={dateRange.to} />
+        <ProjectsTable from={dateRange.from} to={dateRange.to} />
       </div>
     </>
   );
