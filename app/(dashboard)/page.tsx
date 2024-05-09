@@ -27,9 +27,12 @@ async function page() {
     <div className="h-full bg-background">
       <div className="border-b bg-card">
         <div className="container flex flex-wrap items-center justify-between gap-6 py-8">
-          <p className="text-3xl font-bold">Hello, {user.firstName}! 👋</p>
+          <p className="text-3xl font-bold">Welcome👋</p>
 
           <div className="flex items-center gap-3">
+            <div>
+              
+            </div>
             <CreateTransactionDialog
               trigger={
                 <Button

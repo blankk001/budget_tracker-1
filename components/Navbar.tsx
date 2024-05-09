@@ -23,6 +23,7 @@ const items = [
   { label: "Dashboard", link: "/" },
   { label: "Transactions", link: "/transactions" },
   { label: "Manage", link: "/manage" },
+  { label: "Projects", link: "/projects" },
 ];
 
 function MobileNavbar() {
@@ -38,7 +39,8 @@ function MobileNavbar() {
             </Button>
           </SheetTrigger>
           <SheetContent className="w-[400px] sm:w-[540px]" side="left">
-            <Logo />
+            {/* <Logo /> */}
+            
             <div className="flex flex-col gap-1 pt-4">
               {items.map((item) => (
                 <NavbarItem
@@ -52,7 +54,7 @@ function MobileNavbar() {
           </SheetContent>
         </Sheet>
         <div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
-          <LogoMobile />
+          Budget Tracker
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
@@ -68,7 +70,8 @@ function DesktopNavbar() {
     <div className="hidden border-separate border-b bg-background md:block">
       <nav className="container flex items-center justify-between px-8">
         <div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
-          <Logo />
+          {/* <Logo /> */}
+          
           <div className="flex h-full">
             {items.map((item) => (
               <NavbarItem
